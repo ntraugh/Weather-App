@@ -1,0 +1,44 @@
+* {
+    margin: auto;
+    box-sizing: border-box;
+}
+
+main{
+    position: relative;
+}
+
+
+h1 {
+    background-image: linear-gradient(to right, blue, black);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 48px;
+}
+
+hr {
+    margin-left: 4px;
+    width: 68%;
+}
+
+.city-search {
+    margin: 20px 10px;
+    display: block;
+    /* border-style: solid; */
+    width: 15%;
+}
+
+.info {
+    border-style: solid;
+    position: absolute;
+    left: 20%;
+    top: 15%;
+    width: 65%;
+} 
+
+.forecast{
+    margin-right: 60px;
+    position: absolute;
+    left: 20%;
+    bottom: -250%;
+}
