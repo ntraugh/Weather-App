@@ -3,7 +3,7 @@ var date = $("#date")
 var today = moment().format("(M/D/YYYY)")
 // var temp = $(".temp")
 
-date.append(today)
+
 // city.prepend("Charlotte ") // .prepend will add the elemnt to the beggining... useful to enter the city to the info page once selected
 // temp.append("74")
 
@@ -18,11 +18,14 @@ var weather = {
     },
     // display the weather with a new function by passing in our data as an argument
     weatherDisplay: function(data){
+        
         var { name } = data;
         var { description, icon} = data.weather[0];
         var { temp, humidity} = data.main;
         var { speed } = data.wind;
         // need to find UV index
         console.log(name, description, icon, humidity, temp, speed);
+        document.querySelector(".city").innerText = name + " " + today; 
     }
 }
+
