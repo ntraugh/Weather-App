@@ -14,7 +14,15 @@ var weather = {
     fetchWeather: function(city){
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + this.apiKey)
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) => this.weatherDisplay(data));
+    },
+    // display the weather with a new function by passing in our data as an argument
+    weatherDisplay: function(data){
+        var { name } = data;
+        var { description, icon} = data.weather[0];
+        var { temp, humidity} = data.main;
+        var { speed } = data.wind;
+        // need to find UV index
+        console.log(name, description, icon, humidity, temp, speed);
     }
-    
 }
