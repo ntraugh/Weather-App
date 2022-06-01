@@ -1,9 +1,4 @@
-var date = $("#date")
-// var city = $(".city")
 var today = moment().format("(M/D/YYYY)")
-// var temp = $(".temp")
-
-
 // city.prepend("Charlotte ") // .prepend will add the elemnt to the beggining... useful to enter the city to the info page once selected
 // temp.append("74")
 
@@ -20,12 +15,17 @@ var weather = {
     weatherDisplay: function(data){
         
         var { name } = data;
-        var { description, icon} = data.weather[0];
+        var { icon, description} = data.weather[0];
         var { temp, humidity} = data.main;
         var { speed } = data.wind;
         // need to find UV index
         console.log(name, description, icon, humidity, temp, speed);
         document.querySelector(".city").innerText = name + " " + today; 
+        document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+        document.querySelector(".temp").innerText = "Temp: " + Math.floor(temp) + "°F";
+        document.querySelector(".wind").innerText = "Wind Speed: " + Math.floor(speed) + " MPH"
+        document.querySelector(".humid").innerText = "Humidity: " + Math.floor(humidity) + " %"
+        document.querySelector(".description").innerText = description 
     }
 }
 

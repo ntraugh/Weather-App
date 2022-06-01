@@ -45,8 +45,8 @@ hr {
     width: 15%;
 }
 
-.city {
-
+.description {
+    text-transform: capitalize;
 }
 
 .info {
