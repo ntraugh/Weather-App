@@ -50,6 +50,13 @@ hr {
     padding: 10px;
 }
 
+.searches {
+    display: block;
+    width: 15%;
+    margin: 20px 10px;
+    
+}
+
 .description {
     text-transform: capitalize;
 }

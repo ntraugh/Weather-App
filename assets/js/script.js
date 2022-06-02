@@ -1,8 +1,7 @@
-forecastEl = document.querySelector("#day1")
-
+citySearch = document.querySelector(".searches")
 var today = moment().format("(M/D/YYYY)")
-// city.prepend("Charlotte ") // .prepend will add the elemnt to the beggining... useful to enter the city to the info page once selected
-// temp.append("74")
+var searchHistory = []; 
+
 
 var weather = {
     // logging our api key we got from openweather
@@ -39,26 +38,41 @@ var weather = {
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?" + name + "')" 
         document.querySelector(".description").innerText = description 
 
-        // after defining new variables for forecast do a for loop to add them on the page
+        
     },
     // grabbing the value of the search bar to use for our input
     inputBar: function(){
         this.fetchWeather(document.querySelector(".input").value);
         this.fetchForecast(document.querySelector(".input").value);
     },
+    displaySearch: function(){
+        // var x = localStorage.key(0)
+        var cities = JSON.parse(localStorage.getItem("City")) || [];
+        var doc = document.createElement("button")
+        doc.textContent = cities
+        citySearch.appendChild(doc)
+
+       
+        // document.querySelector(".searches").innerText += " " + x;
+        // console.log(searchHistory)
+
+        
+    }
+    
 }
 
 document.querySelector(".city-search button").addEventListener("click", function(event){
     if(event){
         event.preventDefault();
+        weather.displaySearch();
+
         var input = document.querySelector(".input").value
         weather.inputBar();
-        var storageInput = {
-            City: input
-        }
+        localStorage.setItem("City", JSON.stringify(input))
+
         var cities = JSON.parse(localStorage.getItem("City")) || [];
-        // cities.push(storageInput)
-        localStorage.setItem("City", JSON.stringify(storageInput))
+        searchHistory.push(cities)
+        console.log(cities)
     }
 });
 
@@ -66,16 +80,18 @@ document.querySelector(".city-search button").addEventListener("click", function
 document.querySelector(".input").addEventListener("keyup", function(event){
     if(event.key == "Enter"){
         event.preventDefault();
+        weather.displaySearch();
+
         var input = document.querySelector(".input").value
         weather.inputBar();
-        var storageInput = {
-            City: input
-        }
+        localStorage.setItem("City", JSON.stringify(input))
+
         var cities = JSON.parse(localStorage.getItem("City")) || [];
-        // cities.push(storageInput)
-        localStorage.setItem("City", JSON.stringify(storageInput))
+        searchHistory.push(cities)
+        console.log(cities)
     }
 })
 
 
 document.querySelector(".city").innerText = today; 
+// weather.displaySearch();
