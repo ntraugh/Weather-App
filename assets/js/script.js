@@ -1,6 +1,7 @@
 citySearch = document.querySelector(".searches")
+
 var today = moment().format("(M/D/YYYY)")
-var searchHistory = []; 
+
 
 
 var weather = {
@@ -11,6 +12,7 @@ var weather = {
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + this.apiKey)
         .then((response) => response.json())
         .then((data) => this.weatherDisplay(data));
+        this.storeSearch(city);
     },
     fetchForecast: function(city){
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + this.apiKey)
@@ -43,36 +45,45 @@ var weather = {
     // grabbing the value of the search bar to use for our input
     inputBar: function(){
         this.fetchWeather(document.querySelector(".input").value);
-        this.fetchForecast(document.querySelector(".input").value);
+        // this.fetchForecast(document.querySelector(".input").value);
+    },
+    storeSearch: function(city){
+
+        var cities = JSON.parse(localStorage.getItem("City")) || [];
+        if(!cities.includes(city)){
+            cities.push(city)
+           localStorage.setItem("City", JSON.stringify(cities))
+           this.displaySearch()
+        }
     },
     displaySearch: function(){
-        // var x = localStorage.key(0)
         var cities = JSON.parse(localStorage.getItem("City")) || [];
-        var doc = document.createElement("button")
-        doc.textContent = cities
-        citySearch.appendChild(doc)
+        citySearch.innerHTML = "";
+        for(var city of cities ){
+            // citySearch.innerHTML = "";
+            // <button type="button" class="btn btn-primary custom-button">Search</button>
+            var btnEL = document.createElement("button")
+            btnEL.dataset.name = city;
+            btnEL.className = "btn btn-secondary";
+            btnEL.textContent = city; 
+            citySearch.appendChild(btnEL)
 
-       
-        // document.querySelector(".searches").innerText += " " + x;
-        // console.log(searchHistory)
 
-        
+        }
     }
     
 }
 
 document.querySelector(".city-search button").addEventListener("click", function(event){
+    var name = event.target.getAttribute("data-name")
     if(event){
         event.preventDefault();
-        weather.displaySearch();
-
-        var input = document.querySelector(".input").value
+        // weather.displaySearch();
         weather.inputBar();
-        localStorage.setItem("City", JSON.stringify(input))
-
-        var cities = JSON.parse(localStorage.getItem("City")) || [];
-        searchHistory.push(cities)
-        console.log(cities)
+        
+    }if (name){
+        weather.inputBar();
+        // citySearch.textContent = "";
     }
 });
 
@@ -80,18 +91,16 @@ document.querySelector(".city-search button").addEventListener("click", function
 document.querySelector(".input").addEventListener("keyup", function(event){
     if(event.key == "Enter"){
         event.preventDefault();
-        weather.displaySearch();
+        // weather.displaySearch();
 
-        var input = document.querySelector(".input").value
+        
         weather.inputBar();
-        localStorage.setItem("City", JSON.stringify(input))
+      
 
-        var cities = JSON.parse(localStorage.getItem("City")) || [];
-        searchHistory.push(cities)
-        console.log(cities)
+       
     }
 })
 
 
 document.querySelector(".city").innerText = today; 
-// weather.displaySearch();
+weather.displaySearch();
