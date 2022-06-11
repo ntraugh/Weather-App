@@ -102,5 +102,5 @@ document.querySelector(".input").addEventListener("keyup", function(event){
 })
 
 
-document.querySelector(".city").innerText = today; 
+// document.querySelector(".hello").innerText = today; 
 weather.displaySearch();

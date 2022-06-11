@@ -20,28 +20,25 @@
 </head>
 
 <body>
-    <h1>Weather App</h1>
+    <h1>Current Weather</h1>
     <main>
-        <div class="city-search">
-            <h2>Search For a City:</h2>
-            <input type="text" class="input" placeholder="City">
-            <button type="button" class="btn btn-primary custom-button">Search</button>
-            <hr>
-            <!-- previously searched cities will populate under this break -->
-            <div class="searches"></div>
-        </div>
-
         <div class="info">
-            <h2 class="city"></h2>
-            <img class="icon"></img>
-            <h3 class="description"></h3>
-            <h3 class="temp"></h3>
-            <h3 class="wind"></h3>
-            <h3 class="humid"></h3>
-            <h3 class="UV"></h3>
+            <div class="city-search">
+                <!-- <div class="col-12"> -->
+                    <h2>Search For a City:</h2>
+                    <input type="text" class="input" placeholder="City">
+                    <button type="button" class="btn btn-primary custom-button">Search</button>
+                </div>
+                <div class="weather">
+                    <h2 class="city"></h2>
+                    <img class="icon"></img>
+                    <h3 class="description"></h3>
+                    <h3 class="temp"></h3>
+                    <h3 class="wind"></h3>
+                    <h3 class="humid"></h3>
+                </div>
+            </div>
         </div>
-
-        
 
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
