@@ -51,11 +51,7 @@ hr {
 
 
 
-.searches {
-    width: 50%;
-    margin: 30px 10px;
-    
-}
+
 
 .description {
     text-transform: capitalize;
@@ -65,7 +61,7 @@ hr {
 .card {
     /* border-style: solid; */
     /* position: absolute; */
-    width: 55%;
+    width: 75%;
     /* margin-top: auto; */
     border-radius: 20px;
     padding: 10px;
