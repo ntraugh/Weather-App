@@ -13,7 +13,7 @@
 
 
 ## Visuals
-![PNG](./assets/newweather.png)
+![PNG](./assets/newweather.PNG)
 
 ## Resources
 
